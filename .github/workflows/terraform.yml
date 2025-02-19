@@ -21,6 +21,16 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-west-2
 
+      - name: Instalar AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install awscli
+
+      - name: Criar o bucket S3
+        run: |
+          aws s3api create-bucket --bucket tech-challenge-tf-state --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
+        continue-on-error: true
+
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
 
