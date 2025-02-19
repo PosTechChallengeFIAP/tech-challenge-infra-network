@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "tech-challenge-tf-state-bucket"
-    key            = "terraform.tfstate"
+    key            = "network/terraform.tfstate"
     region         = "us-west-2"
     encrypt        = true
   }
