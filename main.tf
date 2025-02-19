@@ -3,5 +3,11 @@ provider "aws" {
 }
 
 terraform {
-  backend "s3" {}
+  backend "s3" {
+    bucket         = "tech-challenge-tf-state"
+    key            = "terraform.tfstate"
+    region         = "us-west-2"
+    dynamodb_table = "terraform-lock"
+    encrypt        = true
+  }
 }
