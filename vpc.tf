@@ -57,7 +57,7 @@ resource "aws_security_group" "allow_all" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    security_groups = [ata.terraform_remote_state.app.outputs.aurora_sg_id]
+    security_groups = [data.terraform_remote_state.app.outputs.aurora_sg_id]
   }
 
   ingress {
