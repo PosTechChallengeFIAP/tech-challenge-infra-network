@@ -16,7 +16,7 @@ resource "aws_security_group" "aurora_sg" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [data.terraform_remote_state.network.outputs.security_group_id]
+    security_groups = [aws_security_group.allow_all.id]
   }
 
   egress {
