@@ -1,6 +1,24 @@
+resource "aws_subnet" "private_aurora_a" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "tech-challenge-private-aurora-subnet-a"
+  }
+}
+
+resource "aws_subnet" "private_aurora_b" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.2.0/24"
+
+  tags = {
+    Name = "tech-challenge-private-aurora-subnet-b"
+  }
+}
+
 resource "aws_db_subnet_group" "aurora_subnet_group" {
   name       = "aurora-subnet-group"
-  subnet_ids = [aws_subnet.public.id]
+  subnet_ids = [aws_subnet.private_aurora_a.id, aws_subnet.private_aurora_b.id]
 
   tags = {
     Name = "aurora-subnet-group"
@@ -13,10 +31,10 @@ resource "aws_security_group" "aurora_sg" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "tcp"
-    security_groups = [aws_security_group.allow_all.id]
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
   }
 
   egress {

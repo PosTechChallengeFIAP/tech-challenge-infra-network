@@ -57,7 +57,6 @@ resource "aws_security_group" "allow_all" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    security_groups = [aws_security_group.aurora_sg.id]
   }
 
   ingress {
@@ -71,5 +70,4 @@ resource "aws_security_group" "allow_all" {
     Name = "tech-challenge-allow-all-sg"
   }
 }
-
     
