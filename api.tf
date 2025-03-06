@@ -1,40 +1,40 @@
-resource "aws_subnet" "public" {
+resource "aws_subnet" "api" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "tech-challenge-public-subnet"
+    Name = "tech-challenge-api-public-subnet"
   }
 }
 
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "api" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "tech-challenge-igw"
+    Name = "tech-challenge-api-igw"
   }
 }
 
-resource "aws_route_table" "public" {
+resource "aws_route_table" "api" {
   vpc_id = aws_vpc.main.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+    gateway_id = aws_internet_gateway.api.id
   }
 
   tags = {
-    Name = "tech-challenge-public-route-table"
+    Name = "tech-challenge-api-public-route-table"
   }
 }
 
-resource "aws_route_table_association" "public" {
-  subnet_id      = aws_subnet.public.id
-  route_table_id = aws_route_table.public.id
+resource "aws_route_table_association" "api" {
+  subnet_id      = aws_subnet.api.id
+  route_table_id = aws_route_table.api.id
 }
 
-resource "aws_security_group" "allow_all" {
+resource "aws_security_group" "api" {
   vpc_id = aws_vpc.main.id
 
   egress {
@@ -59,6 +59,6 @@ resource "aws_security_group" "allow_all" {
   }
 
   tags = {
-    Name = "tech-challenge-allow-all-sg"
+    Name = "tech-challenge-api-sg"
   }
 }

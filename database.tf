@@ -5,7 +5,7 @@ resource "aws_subnet" "private_aurora_a" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "tech-challenge-private-aurora-subnet-a"
+    Name = "tech-challenge-aurora-private-subnet-a"
   }
 }
 
@@ -16,7 +16,7 @@ resource "aws_subnet" "private_aurora_b" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "tech-challenge-private-aurora-subnet-b"
+    Name = "tech-challenge-aurora-private-subnet-b"
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_db_subnet_group" "aurora_subnet_group" {
   subnet_ids = [aws_subnet.private_aurora_a.id, aws_subnet.private_aurora_b.id]
 
   tags = {
-    Name = "aurora-subnet-group"
+    Name = "tech-challenge-aurora-subnet-group"
   }
 }
 
@@ -49,6 +49,6 @@ resource "aws_security_group" "aurora_sg" {
   }
 
   tags = {
-    Name = "aurora-security-group"
+    Name = "tech-challenge-aurora-sg"
   }
 }
