@@ -11,7 +11,7 @@ resource "aws_subnet" "private_aurora_a" {
 
 resource "aws_subnet" "private_aurora_b" {
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.2.0/24"
+  cidr_block              = "10.0.4.0/24"
   availability_zone       = "us-west-2b"
   map_public_ip_on_launch = false
 
