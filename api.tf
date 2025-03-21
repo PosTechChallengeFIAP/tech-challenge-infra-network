@@ -4,7 +4,17 @@ resource "aws_subnet" "api" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "tech-challenge-api-public-subnet"
+    Name = "tech-challenge-api-public-subnet_a"
+  }
+}
+
+resource "aws_subnet" "api2" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.2.0/24"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "tech-challenge-api-public-subnet_b"
   }
 }
 
@@ -54,13 +64,6 @@ resource "aws_security_group" "api" {
   ingress {
     from_port   = 443
     to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
