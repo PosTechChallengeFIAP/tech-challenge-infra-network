@@ -46,6 +46,11 @@ resource "aws_route_table_association" "api" {
   route_table_id = aws_route_table.api.id
 }
 
+resource "aws_route_table_association" "api2" {
+  subnet_id      = aws_subnet.api2.id
+  route_table_id = aws_route_table.api.id
+}
+
 resource "aws_security_group" "api" {
   vpc_id = aws_vpc.main.id
 
