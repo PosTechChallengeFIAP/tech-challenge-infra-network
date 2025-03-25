@@ -1,5 +1,5 @@
-output "lambda_private_subnet_id" {
-    value = aws_subnet.private_lambda.id
+output "lambda_public_subnet_id" {
+    value = aws_subnet.public_lambda.id
 }
 
 output "lambda_sg_id" {
