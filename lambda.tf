@@ -35,7 +35,7 @@ resource "aws_subnet" "public_lambda" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "tech-challenge-lambda-private-subnet"
+    Name = "tech-challenge-lambda-public-subnet"
   }
 }
 
