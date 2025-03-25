@@ -29,12 +29,17 @@ resource "aws_security_group" "lambda" {
   }
 }
 
-resource "aws_subnet" "private_lambda" {
+resource "aws_subnet" "public_lambda" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.3.0/24"
-  map_public_ip_on_launch = false
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "tech-challenge-lambda-private-subnet"
   }
+}
+
+resource "aws_route_table_association" "lambda" {
+  subnet_id      = aws_subnet.public_lambda.id
+  route_table_id = aws_route_table.api.id
 }
